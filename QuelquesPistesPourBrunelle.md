@@ -19,7 +19,6 @@ on écrit un programme
 ```
 On le lance avec le bouton "Evaluer le code" en bas, et on a le résultat de l'exécution dans la colonne de droite.
 (fig2.png)
-Encore là ?
 
 ### Quelques règles à partir de cette exemple :
 
@@ -27,6 +26,30 @@ Encore là ?
 - Pour écrire quelque chose, il faut faire appel à la fonction print_string() ou print_int() selon ce qu'on veut écrire !
 - Les variables sont "unmutables", c'est à dire qu'on ne peut pas écrire coucou = coucou + " machin"
 
+## Ecrire une fonction
+### la base
+```Ocmal
+let f x = 2*x;;
+print_int(f 3);;
+```
+
+Je n'y peut rien, c'est comme cela ! 
+La fonction s'appelle f, le paramètre x, et la valeur renvoyée est 2 * 2.
+Comme je veux travailler avec des entiers, je mets print_int().
+
+Original mais pas très compliqué !
+(fig3.png)
+
+### Utilisation de la Console
+Un petit truc sympa, c'est qu'une fois le code évalué je peux l'essayer dans la console (fig4.png)
+Je tape 
+```Ocmal
+f 5
+```
+Et il me retourne
+```Ocmal
+- int = 10
+```
 
 
 
