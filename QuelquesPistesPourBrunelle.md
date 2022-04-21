@@ -12,10 +12,10 @@ C'est un éditeur qui permet de voir ce qu'on fait, et une console qui permet te
 
 Comment cela marche ?
 on écrit un programme
-`
+```Ocaml
   let coucou = "Coucou";;
   print_string(coucou);;
-`
+```
 
 
 
