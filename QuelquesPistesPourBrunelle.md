@@ -8,7 +8,13 @@ Je n'ai pas la prétention de faire un cours. Seulement faire pour moi un exerci
 ## Comment faire du Ocaml
 Personnellement, j'aime bien avoir du concret : J'aime bien utiliser [try.ocamlpro.com](http:try.ocamlpro.com)
 C'est un éditeur qui permet de voir ce qu'on fait, et une console qui permet te tester les fonctions.
+(try.ocmal.pro.png)
 
+Comment cela marche ?
+on écrit un programme
+`let coucou = "coucou";;
+printString(coucou);;
+`
 
 
 
