@@ -111,9 +111,46 @@ Toutefois, si on met des parenthèses partout, Ocaml
 
 ### Super simple...
 ```
-let = tab[1; 2; 3]
+let = tab[1; 2; 3];;
 ```
 ### Attention !
 Tous les éléments doit avoir le même type.
+
+## La manipulation des tableaux
+### hum... Ocaml pas gentil...
+On ne peut que prendre la premier élement, ou tout le reste ! C'est assez violent pour quelqu'un qui arrive d'un langage où on peut aller taper n'importe où dans le tableau... Mais c'est comme cela
+Pour cela il y a deux fonctions dans le module `List`, qui gère les listes :
+
+- `List.hd(tab)`, qui renvoie le premier terme
+- `Liste.tl(tab)', qui renvoie tout le tableau, sauf le premier élément. (attention, si tab = [], cela plante !)
+
+Pour comprendre, rien ne vaut un exemple :
+```Ocaml
+let tab = [1; 2; 3];;
+let debut = List.hd(tab);;
+let fin = List.tl(tab);;
+```
+
+on a `debut = 1` et `fin = [2; 3]`.
+
+Alors comment faire pour manipuler un tableau ?
+
+Avec conrage, on applique la méthode
+on veut multipler tous les termes d'un tabelau par 2. Soit `double` cette fonction, qui a un tableau comme paramètre, et qui renvoie un tableau.
+1. Le plus petit cas... le tableau vide [], et donc `double []` renvoie `[]`
+2. On suppose que cela marche avec une liste de taille n-1, et que donc `double [...]` a du sens. Que se passe-t-il pour mon tableau de taille n ?
+Et bien, je dis que le résultat c'est un premier tableau de 1 élément, le premier qui va être multiplié par 2, concaténé au tableau renvoyé par `double [...]`.
+la concaténation se note "@" pour les listes et ^ pour string
+On a donc cela 
+
+```Ocaml
+let double tab =
+   if tab = [] then
+      []
+   else [List.hd(tab)] @ double List.tl(tab);;
+``` 
+
+Simple, non ?
+
 
 
