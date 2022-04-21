@@ -14,8 +14,11 @@ C'est un éditeur qui permet de voir ce qu'on fait, et une console qui permet te
 ### Un premier programme
 on écrit un programme
 ```Ocaml
-  let coucou = "Coucou";;
-  print_string(coucou);;
+(* Mon premier commentaire, 
+   au début de mon premier programme en Ocaml...*)
+let coucou = "Coucou";;
+(* Et histoire de voir qu'il se passe quelque chose...*)
+print_string(coucou);;
 ```
 On le lance avec le bouton "Evaluer le code" en bas, et on a le résultat de l'exécution dans la colonne de droite.
 (fig2.png)
@@ -28,7 +31,7 @@ On le lance avec le bouton "Evaluer le code" en bas, et on a le résultat de l'e
 
 ## Ecrire une fonction
 ### la base
-```Ocmal
+```Ocaml
 let f x = 2*x;;
 print_int(f 3);;
 ```
@@ -43,13 +46,54 @@ Original mais pas très compliqué !
 ### Utilisation de la Console
 Un petit truc sympa, c'est qu'une fois le code évalué je peux l'essayer dans la console (fig4.png)
 Je tape 
-```Ocmal
+```Ocaml
 f 5
 ```
 Et il me retourne
-```Ocmal
+```Ocaml
 - int = 10
 ```
+### La "Force" de Ocmal (et du paradigme fonctionnel en général)
+Ce qui est très fort, c'est l'appel récursif!
+Par exemple je veux calculer n!. Appelons `fact n` la fonction qui va le faire
+la méthode est toujours la même:
+1) Quel est le plus petit cas ? ici, on prend n = 1, et 1! = 1, d'où fact 1 doit renvoyer 1.
+2) On suppose que le programme tourne jusqu'à n-1... c'est à dire de fact (n-1) a du sens. Comment vais-je calculer fact n ? 
+Assez clairement, pour moi, fact n = n * fact (n-1).
+
+En python cela donerait cela 
+```python
+def fact(n:int)->int:
+  if n == 1:
+    return 1
+  return n * fact(n-1)
+  
+print(fact(5))
+```
+
+Et bien en Ocmal, cela s'écrit
+```Ocaml
+let rec fact n = if n = 1 then 1 else n*fact (n-1);;
+(* et pour voir le résultat... *)
+print_int(fact 5);;
+```
+
+Ou si on veut faire joli...
+```Ocaml
+let rec fact n = 
+  if n = 1 then 
+    1 
+  else 
+    n*fact (n-1);;
+    
+(* et pour voir le résultat... *)
+print_int(fact 5);;
+```
+### Parenthèses, pas parenthèses ?
+Cela peut être déroutant au départ, mais Ocmal n'a pas besoin de parenthèse, tant que cela se lit directement. Ici, seul (n-1) nécessite des parenthèses, car on veut avoir l'image de n - 1 par la fonction fact, et non 1 ôté à l'image de n par fact.
+Là encore, c'est comme cela. On apprend, et on fait avec.
+Toutefois, si on met des parenthèses partout, Ocaml
+
 
 
 
