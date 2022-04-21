@@ -9,7 +9,7 @@ Je n'ai pas la prétention de faire un cours. Seulement faire pour moi un exerci
 ### mon éditeur de texte en ligne que j'aime bien...
 Personnellement, j'aime bien avoir du concret : J'aime bien utiliser [try.ocamlpro.com](http:try.ocamlpro.com)
 C'est un éditeur qui permet de voir ce qu'on fait, et une console qui permet te tester les fonctions.
-(try.ocmal.pro.png)
+(fig1.png)
 
 ### Un premier programme
 on écrit un programme
