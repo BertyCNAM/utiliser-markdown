@@ -107,22 +107,27 @@ Cela peut être déroutant au départ, mais Ocmal n'a pas besoin de parenthèse,
 Là encore, c'est comme cela. On apprend, et on fait avec.
 Toutefois, si on met des parenthèses partout, Ocaml
 
-## Les tableaux en Ocaml
+## Les Listes (Tableaux) en Ocaml
+### Quelques règles
 
-### Super simple...
+- Pour le vocabulaire, les tableaux sont du type `list` d'où l'utilisation du mot liste dans la suite
+- Une liste ne peut comporter que des éléments de même type.
+- On ne peut pas aller taper au milieu de la liste ! (argh...). En effet, on ne peut que prendre la premier élement, ou tout le reste ! C'est assez violent... Mais c'est comme cela
+
+###  Définir une liste : super simple...
 ```
-let = tab[1; 2; 3];;
+let tab = [1; 2; 3];;
 ```
 ### Attention !
-Tous les éléments doit avoir le même type.
+Rappel : tous les éléments doit avoir le même type.
 
-## La manipulation des tableaux
+## La manipulation des Listes 
 ### hum... Ocaml pas gentil...
-On ne peut que prendre la premier élement, ou tout le reste ! C'est assez violent pour quelqu'un qui arrive d'un langage où on peut aller taper n'importe où dans le tableau... Mais c'est comme cela
+
 Pour cela il y a deux fonctions dans le module `List`, qui gère les listes :
 
 - `List.hd(tab)`, qui renvoie le premier terme
-- `Liste.tl(tab)', qui renvoie tout le tableau, sauf le premier élément. (attention, si tab = [], cela plante !)
+- `Liste.tl(tab)`, qui renvoie toute la liste, sauf le premier élément. (attention, si tab = [], cela plante !)
 
 Pour comprendre, rien ne vaut un exemple :
 ```Ocaml
@@ -133,24 +138,78 @@ let fin = List.tl(tab);;
 
 on a `debut = 1` et `fin = [2; 3]`.
 
-Alors comment faire pour manipuler un tableau ?
+NB: `debut` est un `int`, car `tab` est un liste de `int`, alors que `fin` est de type `list`, éventuellement vide.
 
-Avec conrage, on applique la méthode
-on veut multipler tous les termes d'un tabelau par 2. Soit `double` cette fonction, qui a un tableau comme paramètre, et qui renvoie un tableau.
+### Alors comment faire pour manipuler une liste ?
+Regardons sur un exemple simple
+On veut multipler tous les termes d'un tabelau par 2. 
+
+Avec courage, on applique la méthode !
+Soit `double` cette fonction, qui admet une liste comme paramètre, et qui renvoie une liste.
+
 1. Le plus petit cas... le tableau vide [], et donc `double []` renvoie `[]`
-2. On suppose que cela marche avec une liste de taille n-1, et que donc `double [...]` a du sens. Que se passe-t-il pour mon tableau de taille n ?
-Et bien, je dis que le résultat c'est un premier tableau de 1 élément, le premier qui va être multiplié par 2, concaténé au tableau renvoyé par `double [...]`.
-la concaténation se note "@" pour les listes et ^ pour string
+2. On suppose que cela marche avec une liste de taille n-1, et que donc `double [xn-2;   ;x0]` a du sens. Que se passe-t-il pour une liste de taille n ? soit `[xn-1 ; xn-2; ;... ;x0]` 
+Et bien, je dis que le résultat c'est une premiere liste de 1 élément, le premier qui va être multiplié par 2, concaténée à la liste renvoyée par `double [xn-2;   ;x0]`.
+*pour info la concaténation se note "@" pour les listes et ^ pour string*
+
 On a donc cela 
 
 ```Ocaml
-let double tab =
-   if tab = [] then
-      []
-   else [List.hd(tab)] @ double List.tl(tab);;
+let t = [1; 2; 3];;
+
+let rec double tab =
+  if tab = [] then
+    []
+  else 
+    [List.hd(tab) * 2] @ (double (List.tl(tab)));;
+(* Attention, là, il y a besoins de toutes les parenthèses... *)    
+let result = double t;;
 ``` 
 
+
 Simple, non ?
+
+## Encore plus fort !
+Je peux décider que 2 soit un paramètre...
+Je peux donc écrire 
+```Ocaml
+let t = [1; 2; 3];;
+
+let rec fois n tab =
+  if tab = [] then
+    []
+  else 
+    [List.hd(tab) * 2] @ (fois n (List.tl(tab)));;
+    
+let result = fois 2 t;;
+``` 
+
+Mais cela n'est pas le plus fort... C'est maintenant.
+Pour Ocmal, une fonction est une variable comme les autres. En fait, non, une variable est une fonction comme les autres.
+Et donc, je peux légitiment écrire :
+
+```Ocaml
+let t = [1; 2; 3];;
+
+let rec fois n tab =
+  if tab = [] then
+    []
+  else 
+    [List.hd(tab) * 2] @ (fois n (List.tl(tab)));;
+
+let double = fois 2;;
+
+let result = double t;;
+``` 
+
+C'est à dire que je peux créer une fonction qui bloque un des paramètres! trop cool.
+
+## Conclusion
+
+Voilà, j'espère que cette petite introduction va t'aider !
+Bon courage
+Bertrand
+
 
 
 
