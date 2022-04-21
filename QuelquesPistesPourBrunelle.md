@@ -84,16 +84,36 @@ let rec fact n =
   if n = 1 then 
     1 
   else 
-    n*fact (n-1);;
+    n * fact (n-1);;
     
 (* et pour voir le résultat... *)
 print_int(fact 5);;
 ```
+### Quelques règles
+
+- Ne pas oublier le mot clé `rec` qui marque que la fonction est récursive. Sinon, elle ne peut s'appeler elle-même
+- Il faut impérativement traiter tous les cas ! Sinon le compilateur ava pas être très content...
+Dans le cas présent, le prof m'a fait remaraquer que pour éviter n = 0 ou n < 0, on peut écrire
+```Ocaml
+let rec fact n = if n <= 1 then 1 else n*fact (n-1);;
+(* et pour voir le résultat... *)
+print_int(fact 5);;
+```
+Mais à notre petit niveau, on suppose que l'utilisateur n'écrit pas n'importe quoi ;-) Car le else traite bien tous les cas différents de n = 1. 
+
+
 ### Parenthèses, pas parenthèses ?
 Cela peut être déroutant au départ, mais Ocmal n'a pas besoin de parenthèse, tant que cela se lit directement. Ici, seul (n-1) nécessite des parenthèses, car on veut avoir l'image de n - 1 par la fonction fact, et non 1 ôté à l'image de n par fact.
 Là encore, c'est comme cela. On apprend, et on fait avec.
 Toutefois, si on met des parenthèses partout, Ocaml
 
+## Les tableaux en Ocaml
 
+### Super simple...
+```
+let = tab[1; 2; 3]
+```
+### Attention !
+Tous les éléments doit avoir le même type.
 
 
